@@ -1,0 +1,83 @@
+.container{
+	margin-top: 29px;
+	background: -webkit-linear-gradient(left, #af316b, #00c6ff);
+	margin-top: 3%;
+	padding: 3%;
+}
+.left-row{
+	text-align: center;
+	color: #fff;
+	margin-top: 10%;
+}
+.right-row{
+	background: #f8f9fa;
+	border-top-left-radius: 20% 50%;
+	border-bottom-left-radius: 20% 50%;
+}
+.row .register-form{
+	padding: 10%;
+	margin-left: 10%;
+	/*margin-top: 5%;*/
+}
+p{
+	font-family: cursive;
+	font-size: 24px;
+}
+.btnRegister{
+	float: left;
+	/*margin-top: 10%;*/
+	border: none;
+	border-radius: 24px;
+	padding: 2%;
+	background: #0062cc;
+	color: #fff;
+	width: 50%;
+}
+img{
+	height: 150px;
+	width: 150px;
+}
+
+#navigation
+{
+	position: absolute; /*or fixed*/
+	right: 0px;
+	background:#af316b;
+}
+#imgDiv{
+	margin-left: 441px;
+	margin-top: -180px;
+
+}
+label.error {
+	color: red;
+	font-size: 1rem;
+	display: contents;
+	margin-top: 5px;
+}
+footer {
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	/* Set the fixed height of the footer here */
+	height: 60px;
+	background-color: #f5f5f5;
+}
+.navbar,.navbar-fixed-bottom{
+	height: 52px;
+	border-radius: 3px;
+	background-color: #52ecb8;
+}
+.btn-logout{
+	margin-left: 1011px;
+}
+.bdy-ctr{
+	background: white;
+	font-family: cursive;
+}
+.alignIcons{
+	margin-top: 24px;
+}
+a.btn{
+	margin-left: 966px;
+}
