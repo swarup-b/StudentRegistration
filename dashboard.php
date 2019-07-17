@@ -4,7 +4,7 @@ Author: Swarup
 */
 include("auth.php"); //include auth.php file on all secure pages 
 require_once "DbConfig.php";
-
+ $message = $_GET['message']; 
 ?> 
 <!DOCTYPE html>
 <head>
@@ -25,9 +25,7 @@ require_once "DbConfig.php";
 		<?php echo "<h2> Welcome   ".$_SESSION['name']."</h2>"?>
 		<div class="page-header clearfix">
 			<h2 class="pull-left">Employees Details</h2>
-			<div class="search-container pull-right alignIcons">
-				<input class="form-control" id="myInput" type="text" placeholder="Search..">
-			</div>
+			<span class="label label-success"><?php echo $message; ?></span>
 			<input type="button" class="btn btn-success pull-right alignIcons" data-toggle="modal" data-target="#create-employee" value="Add New Employee">
 		</div>
 
@@ -37,7 +35,7 @@ require_once "DbConfig.php";
 		if($result = $conn->query($empAccordingToAdmin)){
 
 			if($result->num_rows > 0){
-				echo "<table class='table table-bordered table-striped'>";
+				echo "<table class='table table-bordered table-striped' id='empTbl'>";
 				echo "<thead>";
 				echo "<tr>";
 				echo "<th>#</th>";
@@ -47,7 +45,7 @@ require_once "DbConfig.php";
 				echo "<th>Action</th>";
 				echo "</tr>";
 				echo "</thead>";
-				echo "<tbody>";
+				echo "<tbody id='myTable'>";
 				while($row = $result->fetch_assoc()){
 					echo "<tr>";
 					echo "<td>" . $row['id'] . "</td>";
@@ -55,7 +53,7 @@ require_once "DbConfig.php";
 					echo "<td>" . $row['address'] . "</td>";
 					echo "<td>" . $row['salary'] . "</td>";
 					echo "<td>";
-					echo "<a href='update.php?id=". $row['id'] ."' title='Update Record' data-toggle='tooltip'><span class='glyphicon glyphicon-pencil'></span></a>";
+					echo "<a href='edit.php?id=". $row['id'] ."' title='Update Record' data-toggle='tooltip'><span class='glyphicon glyphicon-pencil'></span></a> <span>|</span>";
 					echo "<a href='delete.php?id=". $row['id'] ."' title='Delete Record' data-toggle='tooltip'><span class='glyphicon glyphicon-trash'></span></a>";
 					echo "</td>";
 					echo "</tr>";
@@ -105,11 +103,11 @@ require_once "DbConfig.php";
 			</div>
 		</div>
 	</div>
-	<footer>
-		<div class="navbar-fixed-bottom">
-			<p class="text-muted">Copyright  @2109</p>
-		</div>
-	</footer>
+	
+	<div class="navbar-fixed-bottom">
+		<p class="text-muted">Copyright  @2109</p>
+	</div>
+	
 	<link rel="stylesheet" href="css/style.css">
 	<script src="js/validation.js"></script>
 	<script src="js/submitform.js"></script>
@@ -118,5 +116,8 @@ require_once "DbConfig.php";
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+	<link rel="stylesheet" href="http://cdn.datatables.net/1.10.2/css/jquery.dataTables.min.css"></style>
+	<script type="text/javascript" src="http://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
 </body>
 </html>

@@ -7,23 +7,38 @@
  * Comments :
  */
 $(document).ready(function(){ 
-  //$("#loginDiv").css('visibility','hidden');
+  //submitting the login form
   $("#loginf").submit(function(event){
     submitForm();
     return false;
   });
 
+  //inserting the employee details
   $("#create-employee").submit(function(event){
     createEmployee();
     return false;
   });
+
+  //button show and hide
 
   $("#registerDiv").on("click","#lDiv",function(){ 
     $("#registerDiv").hide();
     $("#loginDiv").show();
   });
 
+  /*$("#myInput").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $("#myTable tr").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });*/
+  //Searching table data
+  $('#empTbl').DataTable();
+  $('.dataTables_length').addClass('bs-select');
+
 });
+
+//calling employee form submit using ajax
 function submitForm(){
  $.ajax({
   type: "POST",
@@ -43,6 +58,7 @@ function submitForm(){
 });
 }
 
+//calling login form submit using ajax
 function createEmployee(){
  $.ajax({
   type: "POST",
