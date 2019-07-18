@@ -1,77 +1,56 @@
-/**
- * File : validation.js
- * Path : E:\ProjectWork1\BootStrapDemo\js\val1.js
- * Purpose : It will add formdata and also check email uniqueness.
- * Created : 16-july-2017
- * Author : Swarup.
- * Comments :
- */
-$(document).ready(function(){ 
-  //submitting the login form
-  $("#loginf").submit(function(event){
-    submitForm();
-    return false;
-  });
+$(document).ready(function() {
+    var loginFormSubmit= $("#loginf");
+    var createEmp=$("#create-employee");
+    var registerDiv=$("#registerDiv");
+    var loginDiv=$("#loginDiv");
+    var empTbl=$('#empTbl');
+    var allEmp=$('#allEmp');
+    var dataTables_length=$('.dataTables_length');
+    var loginSpan= $("#loginSpan");
+    var spinner=$('#spinner');
 
-  //inserting the employee details
-  $("#create-employee").submit(function(event){
-    createEmployee();
-    return false;
-  });
-
-  //button show and hide
-
-  $("#registerDiv").on("click","#lDiv",function(){ 
-    $("#registerDiv").hide();
-    $("#loginDiv").show();
-  });
-
-  /*$("#myInput").on("keyup", function() {
-    var value = $(this).val().toLowerCase();
-    $("#myTable tr").filter(function() {
-      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    loginFormSubmit.submit(function(event) {
+        reveledData.submitForm();
+        return false;
     });
-  });*/
-  //Searching table data
-  $('#empTbl').DataTable();
-  $('.dataTables_length').addClass('bs-select');
+
+    createEmp.submit(function(event) {
+        reveledData.createEmployee();
+        return false;
+    });
+
+
+    $("#lDiv").on("click", function() {
+        registerDiv.hide();
+        loginDiv.show();
+    });
+
+     $(document).on('click','.edit_data' ,function(){
+        var emp_id=$(this).attr('id');
+        $.ajax({
+            url:'update.php?id='+emp_id,
+            method:'GET',
+            data:"",
+            success:function(response){
+                var json=JSON.parse(response);
+                $('#hidId').val(json[0].id);
+                $('#name').val(json[0].name);
+                $('#salary').val(json[0].salary);
+                $('#address').val(json[0].address);
+                $('#create').hide();
+                $('#update').show();
+                $('#update-employee').modal('show');
+                console.log(response);
+            }
+        })
+    })
+   
+   
 
 });
 
-//calling employee form submit using ajax
-function submitForm(){
- $.ajax({
-  type: "POST",
-  url: "login.php",
-  data: $('form#loginf').serialize(),
-  success: function(response){
-    if(response==="password is incorrect"){
-      $("#loginSpan").html(response);
-    }else{
-      window.location.href = "dashboard.php";
-    }
-
-  },
-  error: function(){
-    alert("Error");
-  }
-});
+function myFunction(){
+    reveledData.getAllEmployee();
 }
 
-//calling login form submit using ajax
-function createEmployee(){
- $.ajax({
-  type: "POST",
-  url: "createEmployee.php",
-  data: $('form#create').serialize(),
-  success: function(response){
-    if(response==="success") window.location.reload(); 
-    else $('#empSpan').html(response);
-    console.log(response); 
 
-  },
-  error: function(){
-    alert("Error");
-  }
-});
-}

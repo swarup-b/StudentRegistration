@@ -19,6 +19,7 @@
 				}
 			}
 	}
+	echo "success";
 }?>
 
  <?php if( isset($_POST['newName']) )
@@ -37,7 +38,7 @@
 		}
 		$stmt->close();
 	}?>
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html>
 <head>
 	<title>Edit</title>
@@ -84,4 +85,25 @@
 	 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 </body>
-</html>
+</html> -->
+
+ $(document).on('click','.edit_data' ,function(){
+        var emp_id=$(this).attr('id');
+        $.ajax({
+            url:'update.php?id='+emp_id,
+            method:'GET',
+            data:"",
+            success:function(response){
+                var json=JSON.parse(response);
+                $('#hidId').val(json[0].id);
+                $('#name').val(json[0].name);
+                $('#salary').val(json[0].salary);
+                $('#address').val(json[0].address);
+                $('#create').hide();
+                $('#update').show();
+                $('#update-employee').modal('show');
+                console.log(response);
+            }
+        })
+    })
+   
