@@ -1,5 +1,6 @@
 $(document).ready(function() {
     var loginFormSubmit= $("#loginf");
+    var updateFormSubmit= $("#update-employee");
     var createEmp=$("#create-employee");
     var registerDiv=$("#registerDiv");
     var loginDiv=$("#loginDiv");
@@ -13,6 +14,12 @@ $(document).ready(function() {
         reveledData.submitForm();
         return false;
     });
+
+     updateFormSubmit.submit(function() {
+        reveledData.submitUpdatedEmployee();
+        return false;
+    });
+
 
     createEmp.submit(function(event) {
         reveledData.createEmployee();
@@ -33,16 +40,30 @@ $(document).ready(function() {
             data:"",
             success:function(response){
                 var json=JSON.parse(response);
-                $('#hidId').val(json[0].id);
-                $('#name').val(json[0].name);
-                $('#salary').val(json[0].salary);
-                $('#address').val(json[0].address);
-                $('#create').hide();
-                $('#update').show();
+                $('#emp').val(json[0].id);
+                $('#uname').val(json[0].name);
+                $('#usalary').val(json[0].salary);
+                $('#uaddress').val(json[0].address);
                 $('#update-employee').modal('show');
                 console.log(response);
             }
         })
+    })
+
+     $(document).on('click','.delete_data' ,function(){
+        var emp_id=$(this).attr('id');
+      if(confirm('Are you sure to delete this record..')){
+        $.ajax({
+            url:'delete.php?id='+emp_id,
+            method:'GET',
+            data:"",
+            success:function(response){
+                if(response.trim()==='success') $('#lblSpan').html('Deleted  successfully');
+                else $('#lblSpan').html('some error occured');
+                console.log(response);
+            }
+        })
+      }
     })
    
    

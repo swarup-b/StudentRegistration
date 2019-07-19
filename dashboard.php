@@ -28,7 +28,7 @@ if(isset($_GET['message'])){
 		<?php echo "<h2> Welcome   ".$_SESSION['name']."</h2>"?>
 		<div class="page-header clearfix">
 			<h2 class="pull-left">Employees Details</h2>
-			<span class="label label-success"><?php echo $message; ?></span>
+			<span class="label label-success" id="lblSpan"></span>
 			<input type="button" class="btn btn-success pull-right alignIcons" data-toggle="modal" data-target="#create-employee" value="Add New Employee">
 		</div>
 		<div>
@@ -48,14 +48,6 @@ if(isset($_GET['message'])){
 					
 				</tbody>
 			</table>
-			<script>
-				$(document).ready(function(){
-					if ($('#myTable').children().length != 0) {
-						$('#empTable').DataTable();
-   				}
-           
-       } );
-   </script>
 
 </div>
 
@@ -99,7 +91,7 @@ if(isset($_GET['message'])){
 		<div class="modal-content">
 			<div class="modal-header">
 				<a class="close" data-dismiss="modal">×</a>
-				<h3>Create Employee</h3>
+				<h3>Uodate Employee</h3>
 			</div>
 			<form id="update" role="form">
 				<div class="modal-body">
@@ -116,10 +108,10 @@ if(isset($_GET['message'])){
 						<input type="number" name="newSalary" id='usalary' class="form-control">
 					</div>
 				</div>
-				<input type="hidden" name="emp_id" id="emp">
+				<input type="hidden" name="emp_id" id="emp_id">
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-					<input type="submit" class="btn btn-success" id="create" value="Create">
+					<input type="submit" class="btn btn-success" id="tblupdate" value="Update">
 				</div>
 			</form>
 		</div>
@@ -134,9 +126,11 @@ if(isset($_GET['message'])){
 <script src="js/submitform.js"></script>
 <script src="js/reveledData.js"></script>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
-<!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script> -->
+<script type="text/javascript" src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="http://cdn.datatables.net/1.10.2/css/jquery.dataTables.min.css"></style>
 <script type="text/javascript" src="http://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
